@@ -1,0 +1,82 @@
+PATRONES DE DISEÑO DE SOFTWARE
+
+Singleton: 
+          El patrón Singleton es un patrón de diseño creacional que garantiza que una clase tenga una única instancia durante todo el ciclo de vida de la aplicación, y proporciona un punto de acceso global a dicha instancia. Su nombre proviene del concepto matemático de conjunto con un único elemento.
+
+¿Cómo se implementa?
+La implementación del Singleton se basa en tres elementos clave:
+• Constructor privado: impide que otras clases creen nuevas instancias usando el operador new.
+• Campo estático privado: almacena la única instancia de la clase.
+•Método estático público (getInstance): controla el acceso a la instancia, creándola la primera vez que se solicita.
+
+¿Cuándo utilizarlo?
+• Cuando se necesita un único objeto de configuración global compartido por toda la aplicación.
+• Para gestionar conexiones a bases de datos o pools de conexiones.
+• Al implementar un sistema de logs centralizado.
+• Para gestionar el acceso a recursos de hardware como impresoras o puertos de comunicación.
+
+Ventajas: 
+• Garantiza una única instancia en toda la aplicación.                                         • Proporciona un punto de acceso global controlado.                                            • La instancia se crea solo cuando es necesaria (lazy initialization). • Reduce el uso de memoria evitando instancias redundantes.
+
+Desventajas
+• Viola el Principio de Responsabilidad Única al gestionar su propio ciclo de vida.            • En entornos multihilo puede generar condiciones de carrera si no se sincroniza.                • Dificulta las pruebas unitarias al introducir estado global.                                 • Puede esconder dependencias entre clases.
+
+Adapter
+       El patrón Adapter (también denominado Wrapper) es un patrón de diseño estructural que permite que dos interfaces incompatibles puedan colaborar entre sí. Actúa como un intermediario que traduce las llamadas de una interfaz a otra, de manera que el cliente pueda trabajar con clases que de otro modo serían incompatibles.
+
+¿Cómo se implementa?
+El patrón Adapter se puede implementar de dos formas principales:
+• Adapter de objetos (composición): el adaptador contiene una instancia de la clase adaptada y delega las llamadas a ella.
+• Adapter de clases (herencia múltiple): el adaptador hereda tanto de la interfaz objetivo como de la clase adaptada (solo posible en lenguajes con herencia múltiple).
+
+¿Cuándo utilizarlo?
+• Al integrar librerías de terceros cuya interfaz no coincide con la del sistema.
+• Para reutilizar clases existentes que tienen funcionalidades útiles pero interfaces incompatibles.
+• Cuando se necesita integrar código legado en un sistema moderno sin modificarlo.
+• Para hacer que clases de distintas jerarquías colaboren entre sí.
+
+Ventajas
+• Permite la reutilización de código existente sin modificarlo. 
+• Desacopla el cliente de la implementación concreta.
+• Respeta el Principio Abierto/Cerrado (Open/Closed Principle). 
+• Facilita la integración de sistemas legados y librerías externas.
+
+Desventajas	
+• Añade una capa de indirección que puede reducir el rendimiento en operaciones críticas.
+• Incrementa la complejidad del código al introducir clases adicionales. 
+• Puede ser difícil de mantener si la interfaz adaptada cambia frecuentemente.
+
+Command
+       El patrón Command es un patrón de diseño de comportamiento que convierte solicitudes u operaciones en objetos independientes. Esto permite parametrizar métodos con diferentes peticiones, encolar o registrar solicitudes, y soportar operaciones que pueden deshacerse (undo/redo).
+
+¿Cómo se implementa?
+El patrón Command define cuatro participantes principales:
+• Command (interfaz): declara el método execute() que todos los comandos concretos deben implementar.
+• ConcreteCommand: implementa la operación concreta invocando los métodos del receptor.
+• Receiver (Receptor): contiene la lógica de negocio real que ejecuta la operación.
+• Invoker (Invocador): almacena el comando y lo ejecuta en el momento adecuado, sin conocer su implementación.
+
+¿Cuándo utilizarlo?
+• Al implementar funcionalidades de deshacer/rehacer (undo/redo) en editores o aplicaciones gráficas.
+• Para encolar operaciones que deben ejecutarse de forma diferida o asíncrona.
+• Cuando se necesita implementar transacciones reversibles en sistemas críticos.
+• Para implementar menús, botones o atajos de teclado que ejecutan acciones parametrizables.
+• En arquitecturas basadas en eventos o sistemas de mensajería.
+
+Ventajas	
+• Desacopla completamente el emisor (Invoker) del receptor de la operación. 
+• Facilita la implementación de deshacer/rehacer. 
+• Permite encolar, registrar y gestionar el historial de operaciones. 
+• Cumple con el Principio de Responsabilidad Única. • Las operaciones se pueden combinar (Macro Commands).
+
+Desventajas 	
+• Puede aumentar considerablemente el número de clases en el sistema. 
+• La gestión del historial de comandos puede consumir mucha memoria. 
+• Introduce complejidad adicional en sistemas donde basta con una llamada directa.
+
+
+
+
+
+
+
